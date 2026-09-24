@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-type Opcion = "si" | "no" | "depende" | "no_aplica";
+type Opcion = "si" | "no" | "no_aplica";
 
 type Respuesta = {
   eleccion: Opcion;
@@ -19,11 +19,10 @@ type Mensaje =
 const ETIQUETAS: Record<Opcion, string> = {
   si: "Sí",
   no: "No",
-  depende: "Depende",
   no_aplica: "No es de sí o no",
 };
 
-const ORDEN: Opcion[] = ["si", "no", "depende", "no_aplica"];
+const ORDEN: Opcion[] = ["si", "no", "no_aplica"];
 
 const SUGERENCIAS = [
   "¿Conviene emprender sin inversión externa?",
