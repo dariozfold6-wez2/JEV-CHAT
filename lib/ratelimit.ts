@@ -21,3 +21,4 @@ export async function permitir(ip: string): Promise<boolean> {
   const { success } = await limiter.limit(ip);
   return success;
 }
+
