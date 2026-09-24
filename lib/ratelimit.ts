@@ -3,8 +3,9 @@ import { Redis } from "@upstash/redis";
 
 // Límite por IP: 20 preguntas por hora.
 // Si no configurás Upstash, el chat funciona igual pero sin límite.
-const url = process.env.UPSTASH_REDIS_REST_URL;
-const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+// Acepta los nombres de Upstash y los que crea la integración de Vercel (KV_*).
+const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
 
 const limiter =
   url && token
