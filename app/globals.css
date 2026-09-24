@@ -1,0 +1,222 @@
+:root {
+  --fondo: #eef1f5;
+  --superficie: #ffffff;
+  --tinta: #1a1f3a;
+  --tenue: #5e6682;
+  --linea: #d8dce6;
+  --si: #1f8a6a;
+  --no: #c8434f;
+  --depende: #c98a12;
+  --no_aplica: #a3a9bc;
+  --foco: #3b5bdb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #12152a;
+    --superficie: #1b1f38;
+    --tinta: #e8eaf3;
+    --tenue: #9aa0ba;
+    --linea: #2c3152;
+    --si: #3fbf93;
+    --no: #ef6b76;
+    --depende: #f0b84a;
+    --no_aplica: #6d7390;
+    --foco: #8ea6ff;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: var(--fuente), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+
+.pagina {
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: calc(env(safe-area-inset-top, 0px) + 40px) 20px 0;
+}
+
+.encabezado h1 {
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.encabezado p {
+  margin-top: 12px;
+  color: var(--tenue);
+  max-width: 34ch;
+}
+
+.conversacion {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px 0 24px;
+}
+
+.sugerencias { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.sugerencia {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.93rem;
+  cursor: pointer;
+  text-align: left;
+}
+.sugerencia:hover { border-color: var(--tinta); }
+
+.burbuja-usuario {
+  align-self: flex-end;
+  max-width: 85%;
+  background: var(--tinta);
+  color: var(--fondo);
+  padding: 10px 16px;
+  border-radius: 18px 18px 4px 18px;
+  overflow-wrap: anywhere;
+}
+
+.respuesta {
+  align-self: stretch;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 6px 20px 20px 20px;
+  padding: 20px;
+}
+
+.veredicto {
+  font-size: 2.6rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.veredicto small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--tenue);
+}
+
+.barra {
+  display: flex;
+  height: 14px;
+  margin-top: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--linea);
+}
+.barra span {
+  display: block;
+  height: 100%;
+  width: 0;
+  animation: crecer 600ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes crecer { to { width: var(--ancho); } }
+
+.leyenda {
+  list-style: none;
+  padding: 0;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 16px;
+  font-size: 0.93rem;
+}
+.leyenda li { display: flex; align-items: center; gap: 8px; }
+.leyenda i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.leyenda b { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+.meta {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--linea);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--tenue);
+}
+.meta strong { color: var(--tinta); font-variant-numeric: tabular-nums; }
+
+.pensando { color: var(--tenue); font-size: 0.95rem; }
+
+.error {
+  align-self: stretch;
+  border-left: 3px solid var(--no);
+  padding: 8px 14px;
+  color: var(--tinta);
+  background: var(--superficie);
+  border-radius: 4px;
+}
+
+.compositor {
+  position: sticky;
+  bottom: 0;
+  background: var(--fondo);
+  padding: 12px 0 calc(env(safe-area-inset-bottom, 0px) + 12px);
+}
+
+.campo {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 22px;
+  padding: 6px 6px 6px 16px;
+}
+.campo:focus-within { border-color: var(--tinta); }
+.campo textarea {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  resize: none;
+  padding: 8px 0;
+  max-height: 120px;
+  outline: none;
+}
+.campo button {
+  flex: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: var(--tinta);
+  color: var(--fondo);
+  font-weight: 600;
+  cursor: pointer;
+}
+.campo button:disabled { opacity: 0.4; cursor: default; }
+
+.aviso {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--tenue);
+  text-align: center;
+}
+.aviso a { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  .barra span { animation: none; width: var(--ancho); }
+}
