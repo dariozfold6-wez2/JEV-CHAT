@@ -1,5 +1,7 @@
 # Preguntale a Jev
 
+PROBALO EN https://jev-chat-ten.vercel.app/
+
 Chat simple, sin registro: escribís una pregunta de sí o no y Jev (TypeSafe AI) responde con la probabilidad de cada opción y su nivel de confianza.
 
 ## Cómo funciona
