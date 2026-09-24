@@ -1,6 +1,6 @@
 import { experimental_evaluate as evaluate } from "ai";
 
-export const OPCIONES = ["si", "no", "depende", "no_aplica"] as const;
+export const OPCIONES = ["si", "no", "no_aplica"] as const;
 export type Opcion = (typeof OPCIONES)[number];
 
 export type Respuesta = {
@@ -12,13 +12,11 @@ export type Respuesta = {
 // La pregunta tipada que Jev responde para cualquier cosa que escriba la persona.
 // Las opciones van descritas (no solo etiquetadas): así Jev tiene más con qué comparar.
 const INSTRUCCIONES =
-  "La persona escribió `pregunta`. ¿Cuál es la respuesta más razonable según el conocimiento general?";
+  "La persona escribió `pregunta`. Si hubiera que responder solo sí o no, ¿cuál es la respuesta más probable según el conocimiento general?";
 
 const CRITERIOS: Record<Opcion, string> = {
-  si: "La respuesta más razonable es afirmativa: sí.",
-  no: "La respuesta más razonable es negativa: no.",
-  depende:
-    "No hay un sí o un no claro: la respuesta depende del contexto, de la persona o de datos que la pregunta no da.",
+  si: "La respuesta más probable es sí, aunque haya matices o excepciones.",
+  no: "La respuesta más probable es no, aunque haya matices o excepciones.",
   no_aplica:
     "El texto no se puede responder con sí o no: pide un dato, una explicación, una lista, o no es una pregunta.",
 };
