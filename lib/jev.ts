@@ -12,13 +12,13 @@ export type Respuesta = {
 // La pregunta tipada que Jev responde para cualquier cosa que escriba la persona.
 // Las opciones van descritas (no solo etiquetadas): así Jev tiene más con qué comparar.
 const INSTRUCCIONES =
-  "La persona escribió `pregunta`. Si hubiera que responder solo sí o no, ¿cuál es la respuesta más probable según el conocimiento general?";
+  "La persona escribió `pregunta`. Si hubiera que responder solo sí o no, ¿cuál es la respuesta más probable según el conocimiento general? Las preguntas de opinión, comparación o consejo (por ejemplo \"¿es mejor X que Y?\" o \"¿conviene X?\") sí se responden con sí o no: elegí la respuesta hacia la que más se inclina la evidencia o la opinión mayoritaria.";
 
 const CRITERIOS: Record<Opcion, string> = {
-  si: "La respuesta más probable es sí, aunque haya matices o excepciones.",
-  no: "La respuesta más probable es no, aunque haya matices o excepciones.",
+  si: "La respuesta más probable es sí, aunque haya matices, excepciones u opiniones divididas.",
+  no: "La respuesta más probable es no, aunque haya matices, excepciones u opiniones divididas.",
   no_aplica:
-    "El texto no se puede responder con sí o no: pide un dato, una explicación, una lista, o no es una pregunta.",
+    "Solo cuando el texto no admite ninguna respuesta de sí o no: pide un dato concreto (una hora, un nombre, un número), una explicación o una lista, o no es una pregunta. Nunca para preguntas de opinión, comparación o consejo.",
 };
 
 function normalizar(
